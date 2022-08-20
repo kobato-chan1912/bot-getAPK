@@ -6,16 +6,21 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 puppeteer.use(StealthPlugin())
 const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker')
 puppeteer.use(AdblockerPlugin({ blockTrackers: true }))
+require('dotenv').config();
+
+// 
+let chromePath = process.env.CHROME_PATH;
+console.log(chromePath);
 
 
 app.get('/', (req, res) => {
-    res.send('Deploy Successfully! - 222')
+    res.send('Deploy Successfully!')
 })
 
 app.get('/apk/:id', (req, res) => {
     let id = req.params.id;
 
-    puppeteer.launch({ headless: false, args: ['--no-sandbox'] }).then(async browser => {
+    puppeteer.launch({ headless: true, executablePath: chromePath, args: ['--no-sandbox'] }).then(async browser => {
         try {
             const page = await browser.newPage()
             await page.setViewport({ width: 800, height: 600 })
