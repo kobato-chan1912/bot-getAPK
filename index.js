@@ -20,9 +20,10 @@ app.get('/', (req, res) => {
 app.get('/apk/:id', (req, res) => {
     let id = req.params.id;
 
-    puppeteer.launch({ headless: false, executablePath: chromePath, args: ['--no-sandbox', '--disable-setuid-sandbox'] }).then(async browser => {
+    puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] }).then(async browser => {
         try {
             const page = await browser.newPage()
+            await page.setUserAgent('Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0')
             await page.setViewport({ width: 800, height: 600 })
             await page.goto('https://apksos.com/download-app/' + id)
             await page.waitForSelector('div.section.row > div.col-sm-12.col-md-8.text-center > p > a')
