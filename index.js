@@ -9,7 +9,7 @@ puppeteer.use(AdblockerPlugin({ blockTrackers: true }))
 
 
 app.get('/', (req, res) => {
-    res.send('Deploy Successfully!')
+    res.send('Deploy Successfully! - 222')
 })
 
 app.get('/apk/:id', (req, res) => {
