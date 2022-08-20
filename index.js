@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 app.get('/apk/:id', (req, res) => {
     let id = req.params.id;
 
-    puppeteer.launch({ headless: true, executablePath: chromePath, args: ['--no-sandbox'] }).then(async browser => {
+    puppeteer.launch({ headless: false, executablePath: chromePath, args: ['--no-sandbox'] }).then(async browser => {
         try {
             const page = await browser.newPage()
             await page.setViewport({ width: 800, height: 600 })
