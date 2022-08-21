@@ -40,7 +40,7 @@ app.get('/apk/:id', (req, res) => {
             res.json({ dlink: apkLink, version: version });
         } catch (error) {
             await browser.close()
-            res.status(404).json({ dlink: 404 });
+            res.status(404).json({ dlink: '' });
         }
 
     })
